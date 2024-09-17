@@ -1,0 +1,167 @@
+public class SingleLinkedList_NoTail {
+    Node head;
+    public void insertFirst(int data) {
+        Node newNode = new Node(data);
+        if (head == null) {
+        head = newNode;
+        } else {
+        newNode.next = head;
+        head = newNode;
+        }
+        }
+/************************ */
+        
+        public void insertLast(int data) {
+            Node newNode = new Node(data);
+            if (head == null) {
+            head = newNode;
+            } else {
+            Node cur = head;
+            while (cur.next != null) {
+            cur = cur.next;
+            }
+            cur.next = newNode;
+            }
+            }
+
+           /************* */
+            public void insertAfter(int afterData, int data) {
+                Node newNode = new Node(data);
+                if (head == null) {
+                System.out.println("List is empty");
+                return;
+                }
+                Node cur = head;
+                while (cur != null && cur.data != afterData) {
+                cur = cur.next;
+                }
+                if (cur == null) {
+                System.out.println("Node not found.");
+                return;
+                }
+                newNode.next = cur.next;
+                cur.next = newNode;
+                }
+               
+                /********* */
+                public void deleteFirst() {
+                    if (head == null) {
+                    System.out.println("List is empty");
+                    return;
+                    }
+                    head = head.next;
+                    }
+                    
+                    /****** */
+                    public void deleteLast() {
+                        if (head == null) {
+                        System.out.println("List is empty");
+                        return;
+                        }
+                        if (head.next == null) {
+                        head = null;
+                        return;
+                        }
+                        Node cur = head;
+                        while (cur.next.next != null) {
+                        cur = cur.next;
+                        }
+                        cur.next = null;
+                        }
+                       /**** */
+                         
+                        void deleteAfter(int afterData) {
+                            if (head == null) {
+                            System.out.println("List is empty");
+                            return;
+                            }
+                            Node cur = head;
+                            while (cur != null && cur.data != afterData) {
+                            cur = cur.next;
+                            }
+                            if (cur == null) {
+                            System.out.println("List does not contain the target node");
+                            return;
+                            }
+                            if (cur.next == null) {
+                            System.out.println("The target node is the last node");
+                            return;
+                            }
+                            cur.next = cur.next.next;
+                            }
+                            
+                            
+                            /***** */
+                            public void display() {
+                                if (head == null) {
+                                System.out.println("List is empty");
+                                return;
+                                }
+                                Node cur = head;
+                                while (cur != null) {
+                                System.out.print(cur.data + " -> ");
+                                cur = cur.next;
+                                }
+                                System.out.println("null");
+                                }
+                              
+                                /********* */ 
+                                void displayList() {
+                                    if (head == null) {
+                                    System.out.println("List is empty!!");
+                                    return;
+                                    }
+                                    Node cur = head;
+                                    while (cur != null) {
+                                    System.out.print(cur.data + " -> ");
+                                    cur = cur.next;
+                                    }
+                                    System.out.println("/");
+                                    
+                                    }
+                                  
+                                    /******* */
+
+                                int count() {
+                                    Node current = head;
+                                    int count = 0;
+                                    while (current != null) {
+                                    count++;
+                                    current = current.next;
+                                    }
+                                    return count;
+                                    }  
+                                    
+                                    /****** */
+                                    public boolean searchNode(int n1) {
+                                        for (Node current = head; current != null; current = current.next)
+                                         if (current.data == n1) 
+                                         return true;
+                                          return false;
+                                    }
+
+                                  /************* */
+                                    void displayPreSucc(int val) {Node
+                                        current = head; Node succ =
+                                        null;
+                                        Node pre = null;
+                                        if (current.data == val) {succ =
+                                        current.next;
+                                        } else
+                                        while (current != null && current.data != val) {pre =
+                                        current;
+                                        succ = current.next.next;current
+                                        = current.next;
+                                        }
+                                        if (pre != null && succ != null)
+                                        System.out.println(pre.data + " -> " + current.data + " -> "
+                                        + succ.data);
+                                        else if (pre == null && succ != null)
+                                        System.out.println(current.data + " -> " + succ.data);
+                                        else if (pre != null && succ == null)
+                                        System.out.println(pre.data + " -> " + current.data);
+                                        else
+                                        System.out.println(current.data);
+
+                                    }
+                                }
