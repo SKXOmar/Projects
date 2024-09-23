@@ -1,0 +1,12 @@
+public class DNode {
+    protected String element; 
+    protected DNode next, prev; 
+    String data;
+    public DNode(String e) {
+    element = e;
+    prev = null;
+    next = null;
+    }
+    
+    
+}
