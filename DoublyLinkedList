@@ -1,0 +1,240 @@
+public class DoubleLinkedList {
+    DNode head;
+    
+    public void insertFirst(String data) {
+        DNode newNode = new DNode(data);
+        if (head == null) {
+        head  = newNode;
+        } else {
+        head.prev = newNode;
+            newNode.next = head;
+        head = newNode;
+        }
+        }
+/************************ */
+        
+        public void insertLast(String data) {
+            DNode newNode = new DNode(data);
+            if (head == null) {
+            head = newNode;
+            } else {
+           DNode cur = head;
+            while(cur.next != null){
+                cur = cur.next;
+             }
+                cur.next = newNode;
+                newNode.prev = cur;
+            }
+        }
+           /************* */
+            public void insertAfter(String afterData, String data) {
+                DNode newNode = new DNode(data);
+                if (head == null) {
+                System.out.println("List is empty");
+                return;
+                }
+                DNode cur = head;
+                while (cur != null && !cur.data.equals(afterData)) {
+                cur = cur.next;
+                }
+                if (cur == null) {
+                System.out.println("Node not found.");
+                return;
+                }
+                newNode.next = cur.next;
+                if(cur.next != null){
+                    cur.next.prev = newNode;
+                }
+                newNode.prev = cur;
+                cur.next = newNode;
+            }
+                   
+            
+            
+               
+                /********* */
+                public void deleteFirst() {
+                    if (head == null) {
+                    System.out.println("List is empty");
+                    return;
+                    }
+                    head = head.next;
+                   if(head != null){
+                       head.prev = null;
+                   }
+                }    
+                /* */
+                public boolean deleteNode(String target) { 
+                    if (head == null || target == null) {
+                    return false;
+                    }
+                    DNode cur = head;
+                    while (cur != null && !cur.data.equals(target)) {
+                    cur = cur.next;
+                    }
+                    if (cur == null) {
+                    return false;
+                    }
+                    if (cur == head) {
+                    head = cur.next;
+                    if (head != null) {
+                    head.prev = null;
+                    }
+                    } else {
+                    cur.prev.next = cur.next;
+                    if (cur.next != null) {
+                    cur.next.prev = cur.prev;
+                    }
+                    }
+                    return true;
+                    }
+                   
+ 
+                    
+                    /****** */
+                    public void deleteLast() {
+                        if (head == null) {
+                        System.out.println("List is empty");
+                        return;
+                        }
+                        if (head.next == null) {
+                        head = null;
+                        
+                        return;
+                        }
+                        
+                    }
+                       /**** */
+                         
+                        void deleteAfter(String afterData) {
+                            if (head == null) {
+                            System.out.println("List is empty");
+                            return;
+                            }
+                            DNode cur = head;
+                            while (cur != null && cur.data != afterData) {
+                            cur = cur.next;
+                            }
+                            if (cur == null) {
+                            System.out.println("List does not contain the target node");
+                            return;
+                            }
+                            if (cur.next == null) {
+                            System.out.println("The target node is the last node");
+                            return;
+                            }
+                            cur.next = cur.next.next;
+
+                           if(cur.next != null){
+                              cur.next.prev = cur;
+                           }
+
+                            }
+                            
+                            
+                            /***** */
+                            public void display() {
+                                if (head == null) {
+                                System.out.println("List is empty");
+                                return;
+                                }
+                                DNode cur = head;
+                                while (cur != null) {
+                                System.out.print(cur.data + " -> ");
+                                cur = cur.next;
+                                }
+                                System.out.println("null");
+                                }
+                              
+                                /********* */ 
+                                void displayList() {
+                                    if (head == null) {
+                                    System.out.println("List is empty!!");
+                                    return;
+                                    }
+                                    DNode cur = head;
+                                    while (cur != null) {
+                                    System.out.print(cur.data + " -> ");
+                                    cur = cur.next;
+                                    }
+                                    System.out.println("/");
+                                    
+                                    }
+                                  
+                                    /******* */
+
+                                int count() {
+                                    DNode current = head;
+                                    int count = 0;
+                                    while (current != null) {
+                                    count++;
+                                    current = current.next;
+                                    }
+                                    return count;
+                                    }  
+                                    /*** */
+                                    
+                                        
+                                    
+                                      
+                                     /** */   
+                                    public boolean searchNode(String value) {
+                                        DNode cur = head;
+                                        while (cur != null) {
+                                         if (cur.data == value) {
+                                          return true;
+                                         }
+                                          cur = cur.next;
+                                         }
+                                         return false;
+                                    }
+
+                                  /************* */
+                                    void displayPreSucc(String val) {DNode
+                                        current = head; DNode succ =
+                                        null;
+                                        DNode pre = null;
+                                        if (current.data == val) {succ =
+                                        current.next;
+                                        } else
+                                        while (current != null && current.data != val) {pre =
+                                        current;
+                                        succ = current.next.next;current
+                                        = current.next;
+                                        }
+                                        if (pre != null && succ != null)
+                                        System.out.println(pre.data + " -> " + current.data + " -> "
+                                        + succ.data);
+                                        else if (pre == null && succ != null)
+                                        System.out.println(current.data + " -> " + succ.data);
+                                        else if (pre != null && succ == null)
+                                        System.out.println(pre.data + " -> " + current.data);
+                                        else
+                                        System.out.println(current.data);
+
+                                    }
+                                
+                                    public void printlist(DNode cur) { 
+                                       if (head == null) {
+                                       System.out.println("List is empty");
+                                        return;
+                                      }
+                                         System.out.println("forward:");
+                                         DNode last = head;
+                                         while (cur != null) {
+                                         System.out.print(cur.data + " ");
+                                          last = cur;
+                                           cur = cur.next;
+                                      }
+                                           System.out.println();
+                                           System.out.println("backward:");
+                                              while (last != null) {
+                                            System.out.print(last.data + " ");
+                                              last = last.prev;
+                                      }
+                                               System.out.println();
+                                      }
+
+
+                            }
+
