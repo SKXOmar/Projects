@@ -1,0 +1,151 @@
+public class Array_With_Shifting {
+    
+
+        int top = -1;
+    
+        int size;
+    
+        int[] stack;
+    
+    
+    
+        int count = 0;
+    
+        public Array_With_Shifting(int size){
+    
+            this.size = size;
+            stack = new int[size];
+    
+        }
+    
+    
+    
+       public void insertLast(int data){
+            push(data);
+        }
+    
+       public void insertFirst(int data){
+            if (isFull()){
+                System.out.println("the set are full");
+                return;
+            }
+    
+            int[] temp = new int[size];
+            for (int i = 0 ; i<size-1; i++){
+    
+    
+                temp[i+1] = stack[i];
+    
+            }
+            temp[0] = data;
+    
+            stack = temp;
+    
+            top++;
+            count++;
+    
+            displayStack();
+        }
+    
+        public void push(int x) {
+            if (isFull()) {
+              System.out.println("Stack OverFlow");
+        
+              // terminates the program
+              System.exit(1);
+            }
+        
+            // insert element on top of stack
+            System.out.println("Inserting " + x);
+            stack[++top] = x;
+          }
+        
+        public void deleteFirst(){
+            if (isEmpty()){
+                System.out.println("set are empty");
+                return;
+            }
+    
+            int [] temp = new int[size];
+            for (int i = 0 ; i < size-1 ; i++){
+                temp[i] = stack[i+1];
+            }
+            stack = temp;
+            top--;
+            count--;
+            displayStack();
+        }
+       public void deleteLast(){
+            pop();
+        }
+    
+        public int pop() {
+
+            // if stack is empty
+            // no element to pop
+            if (isEmpty()) {
+              System.out.println("STACK EMPTY");
+              // terminates the program
+              System.exit(1);
+            }
+            // pop element from top of stack
+            return stack[top--];
+          }
+    
+        //printing start
+    
+       public void displayStack(){
+            if (isEmpty()){
+                System.out.println("set are empty");
+                return;
+            }
+            System.out.println("----");
+            for (int i = count-1; i>=0 ; i--){
+                System.out.println(stack[i] + " ");
+            }
+            System.out.println("----");
+        }
+       public  void displayFirst(){
+            if (isEmpty()){
+                System.out.println("set are empty");
+                return;
+            }
+            System.out.println(stack[0]);
+        }
+      public  void displayLast(){
+            if (isEmpty()){
+                System.out.println("set are empty");
+             return;
+            }
+            peek();
+        }
+    
+        void displayCount(){
+            System.out.println(this.count);
+        }
+    
+        public int peek() {
+            if (isEmpty()) {
+            System.out.println("Stack is empty");
+            System.exit(1);
+            }
+            return stack[top];
+        }
+    
+    
+    
+        int Count(){
+            return this.count;
+        }
+    
+    
+    
+        boolean isFull(){
+            return top == size-1;
+        }
+        boolean isEmpty(){
+            return top == -1;
+        }
+    
+    }
+
